@@ -9,8 +9,7 @@ class TestFeatures(TestCase):
     def test_initialize_min_max_scaler(self):
         scaler = MinMaxScaler()
         assert isinstance(scaler, MinMaxScaler), "scaler is not a MinMaxScaler object"
-        
-        
+         
     def test_min_max_fit(self):
         scaler = MinMaxScaler()
         data = [[-1, 2], [-0.5, 6], [0, 10], [1, 18]]
@@ -51,6 +50,7 @@ class TestFeatures(TestCase):
         data = [[0, 0], [0, 0], [1, 1], [1, 1]]
         expected = np.array([[-1., -1.], [-1., -1.], [1., 1.], [1., 1.]])
         scaler.fit(data)
+        result = scaler.transform(data)
         assert (result == expected).all(), "Scaler transform does not return expected values. Expect {}. Got: {}".format(expected.reshape(1,-1), result.reshape(1,-1))
         
     def test_standard_scaler_single_value(self):
@@ -60,7 +60,6 @@ class TestFeatures(TestCase):
         scaler.fit(data)
         result = scaler.transform([[2., 2.]]) 
         assert (result == expected).all(), "Scaler transform does not return expected values. Expect {}. Got: {}".format(expected.reshape(1,-1), result.reshape(1,-1))
-
     # TODO: Add a test of your own below this line
     
 if __name__ == '__main__':
